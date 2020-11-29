@@ -27,6 +27,15 @@ data "aws_eks_cluster_auth" "cluster" {
 
 module "vpc" {
     source = "../VPC"
+    public_subnet_tags = {
+    "kubernetes.io/cluster/${local.cluster_name}" = "shared"
+    "kubernetes.io/role/elb"                      = "1"
+    }
+
+  private_subnet_tags = {
+    "kubernetes.io/cluster/${local.cluster_name}" = "shared"
+    "kubernetes.io/role/internal-elb"             = "1"
+  }
 }
 
 resource "aws_security_group" "worker_group_mgmt" {
@@ -83,6 +92,8 @@ module "eks" {
       additional_security_group_ids = [aws_security_group.worker_group_mgmt.id]
     },
   ]
+
+  cluster_endpoint_private_access = true
   
   map_roles                            = var.map_roles
   map_users                            = var.map_users

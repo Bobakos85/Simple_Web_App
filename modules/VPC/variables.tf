@@ -4,6 +4,11 @@ variable "environment" {
   default     = "sandbox"
 }
 
+variable "public_subnet_tags" {
+}
+
+variable "private_subnet_tags" {}
+
 variable "tags" {
   description = "Default Tags to be used on all created resources"
   type = object(
