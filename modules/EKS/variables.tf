@@ -1,7 +1,4 @@
-variable "cidr_block_target_vpc" {
-  description = "The cidr block that the VPC will use"
-  type        = string
-}
+# Optional variables
 
 variable "environment" {
   description = "The environment we will be deploying to, i.e sandbox,test,uat,prod"
@@ -46,7 +43,8 @@ variable "map_users" {
 
 variable "region" {
   description = "Where we will be deploying to"
-  default = "eu-west-2"
+  type        = string
+  default     = "eu-west-2"
 }
 
 variable "tags" {
@@ -71,8 +69,29 @@ variable "tags" {
   }
 }
 
-variable "vpc_name" {
-  description = "Default VPC Name"
-  type = string
+# Mandatory variables
 
+variable "cidr_block_target_vpc" {
+  description = "The cidr block that the VPC will use"
+  type        = string
+}
+
+variable "cluster_name"{
+  description = "EKS cluster name"
+  type = string
+}
+
+variable "subnets" {
+  description = "The subnets EKS will deploy its nodes on"
+  type        = list(string)
+}
+
+variable "vpc_id" {
+  description = "The VPC ID for the the vpc we will be deploying to"
+  type = string
+}
+
+variable "vpc_name" {
+  description = "The VPC Name for the the vpc we will be deploying to"
+  type = string
 }
