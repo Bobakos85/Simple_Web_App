@@ -6,10 +6,6 @@ provider "kubernetes" {
   version                = "~> 1.11"
 }
 
-locals {
-  cluster_name = "simple-web-app-eks"
-}
-
 data "aws_availability_zones" "available" {
 }
 
@@ -19,20 +15,6 @@ data "aws_eks_cluster" "cluster" {
 
 data "aws_eks_cluster_auth" "cluster" {
   name = module.eks.cluster_id
-}
-
-module "vpc" {
-  source = "../VPC"
-
-  public_subnet_tags = {
-    "kubernetes.io/cluster/${local.cluster_name}" = "shared"
-    "kubernetes.io/role/elb"                      = "1"
-  }
-
-  private_subnet_tags = {
-    "kubernetes.io/cluster/${local.cluster_name}" = "shared"
-    "kubernetes.io/role/internal-elb"             = "1"
-  }
 }
 
 resource "aws_security_group" "worker_group_mgmt" {
@@ -68,7 +50,7 @@ resource "aws_security_group" "all_worker_mgmt" {
 
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
-  cluster_name    = local.cluster_name
+  cluster_name    = var.cluster_name
   cluster_version = "1.17"
   subnets         = module.vpc.private_subnets
 
