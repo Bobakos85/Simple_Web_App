@@ -8,7 +8,7 @@ data "aws_iam_policy_document" "rds_access" {
     ]
     resources = ["*"]
     principals {
-      type       = "AWS"
+      type        = "AWS"
       identifiers = ["arn:aws:iam::${var.aws_account_id}:root"]
     }
   }

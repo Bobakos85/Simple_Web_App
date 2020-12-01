@@ -26,11 +26,11 @@ data "aws_eks_cluster_auth" "cluster" {
 }
 
 module "vpc" {
-    source = "../VPC"
-    public_subnet_tags = {
+  source = "../VPC"
+  public_subnet_tags = {
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
     "kubernetes.io/role/elb"                      = "1"
-    }
+  }
 
   private_subnet_tags = {
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
@@ -95,8 +95,8 @@ module "eks" {
   ]
 
   cluster_endpoint_private_access = true
-  
-  map_roles                            = var.map_roles
-  map_users                            = var.map_users
-  map_accounts                         = var.map_accounts
+
+  map_roles    = var.map_roles
+  map_users    = var.map_users
+  map_accounts = var.map_accounts
 }

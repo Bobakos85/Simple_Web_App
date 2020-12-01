@@ -5,11 +5,6 @@ variable "allocated_storage" {
   default     = "30"
 }
 
-variable "availability_zones" {
-  description = "AZs where the DB subnets will reside in"
-  type        = list(string)
-  default     = ["eu-west-2a","eu-west-2b","eu-west-2c"]
-}
 variable "backup_retention_days" {
   description = "Duration for which the backups will be retained"
   type        = number
@@ -20,12 +15,6 @@ variable "backup_window" {
   description = "Time window that the backup will be perfomed"
   type        = string
   default     = "04:00-07:00"
-}
-
-variable "db_cidr_range" {
-  description = "CIDR Blocks where the DB subnets will reside in"
-  type        = list(string)
-  default     = ["10.0.10.0/24","10.0.11.0/24","10.0.12.0/24"]
 }
 
 variable "db_port" {
@@ -88,12 +77,6 @@ variable "multi_az_enabled" {
   default     = false
 }
 
-variable "db_subnet_group_name"{
-  description = "The Subnet Group Name that we want to use for the RDS"
-  type        = string
-  default     = "simple-web-app"
-}
-
 variable "tags" {
   description = "Default Tags to be used on all created resources"
   type = object(
@@ -135,11 +118,9 @@ variable "identifier" {
 variable "route_table_id" {
   description = "The route table we will be associating the subnets with"
   type        = string
-  default     = "rtb-037f8fdfeb80da2e6"
 }
 
 variable "target_vpc_id" {
   description = "The target VPC ID where the instances will be deployed to"
   type        = string
-  default     = "vpc-06dd95958a89f7903"
 } 
