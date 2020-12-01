@@ -1,0 +1,4 @@
+apiVersion: v1
+description: A simple Helm chart for a simple web app
+name: SimpleWebApp
+version: 0.1

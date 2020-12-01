@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simplewebapp-deployment
+  namespace: simplewebapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: SimpleWebApp
+  template:
+    metadata:
+      labels:
+        app: SimpleWebApp
+    spec:
+      containers:
+        - name: simplewebapp-container
+          image: 723949785394.dkr.ecr.eu-west-2.amazonaws.com/simplewebapp:latest
+          ports:
+          - name: http
+            containerPort: 80
