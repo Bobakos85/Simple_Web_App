@@ -9,7 +9,7 @@ data "aws_iam_policy_document" "rds_access" {
     resources = ["*"]
     principals {
       type       = "AWS"
-      identifers = ["arn:aws:iam::${var.aws_account_id}:root"]
+      identifiers = ["arn:aws:iam::${var.aws_account_id}:root"]
     }
   }
   statement {
@@ -30,7 +30,7 @@ data "aws_iam_policy_document" "rds_access" {
     }
     principals {
       type        = "Service"
-      identifiers = ["rds.amazon.aws"]
+      identifiers = ["rds.amazonaws.com"]
     }
   }
 }

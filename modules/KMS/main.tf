@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "eu-west-2"
+}
+
 resource "aws_kms_key" "rds_kms_key" {
   description         = "CMK Key used to encrypt and decrypt RDS data"
   policy              = data.aws_iam_policy_document.rds_access.json

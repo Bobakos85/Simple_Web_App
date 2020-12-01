@@ -15,7 +15,7 @@ output "db_instance_backend_resource_id" {
 }
 
 output "db_instance_backend_sg_id" {
-    value = awssecurity_group.db_sg.id
+    value = aws_security_group.db_sg.id
 }
 
 output "db_instance_backend_username" {

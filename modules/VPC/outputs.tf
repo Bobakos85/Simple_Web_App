@@ -32,3 +32,9 @@ output "azs" {
   description = "List of availability zones"
   value       = module.vpc.azs
 }
+
+# DB Subnet Group ID
+output "subnet_group_id" {
+  description = "DB Subnet Group ID"
+  value       = module.vpc.database_subnet_group
+}

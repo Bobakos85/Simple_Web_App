@@ -75,11 +75,12 @@ module "eks" {
   cluster_version = "1.17"
   subnets         = module.vpc.private_subnets
 
-  tags = {
-    Environment = "test"
-    GithubRepo  = "terraform-aws-eks"
-    GithubOrg   = "terraform-aws-modules"
-  }
+  tags = merge(
+    {
+      environment = var.environment
+    },
+    var.tags
+  )
 
   vpc_id = module.vpc.vpc_id
 

@@ -1,4 +1,8 @@
-resource "random_string" "secure_string" {
+provider "aws"{
+  region = "eu-west-2"
+}
+
+resource "random_password" "secure_string" {
   length           = 16
   special          = true
   min_upper        = 1
@@ -9,13 +13,7 @@ resource "aws_ssm_parameter" "secret" {
   name        = "/${var.environment}/${var.db_name}_database/password/master"
   description = "${var.db_name} RDS password"
   type        = "SecureString"
-  value       = random_string.secure_string.result
-}
-
-resource "aws_db_subnet_group" "db_subnets" {
-  name        = "${var.db_name}_db_subnets"
-  description = "${var.db_name} RDS Subnet Group"
-  subnets_ids = var.target_subnets
+  value       = random_password.secure_string.result
 }
 
 resource "aws_security_group" "db_sg" {
@@ -33,7 +31,7 @@ resource "aws_security_group" "db_sg" {
     protocol    = "tcp"
     to_port     = var.db_port
   }
-  vpc_id = var.target_vpc
+  vpc_id = var.target_vpc_id
 }
 
 resource "aws_db_instance" "db_instance" {
@@ -41,7 +39,7 @@ resource "aws_db_instance" "db_instance" {
   backup_retention_period   = var.backup_retention_days
   backup_window             = var.backup_window
   copy_tags_to_snapshot     = true
-  db_subnet_group_name      = aws_db_subnet_group.db_subnets.name
+  db_subnet_group_name      = var.db_subnet_group_name
   engine                    = var.engine
   engine_version            = var.engine_version
   final_snapshot_identifier = "${var.db_name}-final-snapshot"
