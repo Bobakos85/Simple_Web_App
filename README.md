@@ -1,7 +1,7 @@
 # Simple_Web_App
 
 # Folder Structure
-
+```
 .
 ├── Application
 │   ├── Docker
@@ -43,7 +43,7 @@
 │       ├── outputs.tf
 │       └── variables.tf
 └── variables.tf
-
+```
 # Running the solution
 
 The solution is divided into 2 parts: 
@@ -64,6 +64,18 @@ _Optional:_ An S3 bucket to store the tfstate file. If you dont want to create o
 
 ## Terraform inputs required
 
+### Requirements
+
+| Name | Version |
+|------|---------|
+| kubernetes | ~> 1.11 |
+
+### Providers
+
+No provider.
+
+### Inputs
+
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | application\_name | The application name | `string` | `"SimpleWebApp"` | no |
@@ -81,7 +93,31 @@ _Optional:_ An S3 bucket to store the tfstate file. If you dont want to create o
 | target\_vpc\_id | The target VPC ID where the instances will be deployed to | `string` | `""` | no |
 | vpc\_tags | n/a | <pre>object(<br>    { Name = string }<br>  )</pre> | <pre>{<br>  "Name": ""<br>}</pre> | no |
 
-### Run the infrastructure
+### Outputs
+
+| Name | Description |
+|------|-------------|
+| azs | List of availability zones |
+| config\_map\_aws\_auth | A kubernetes configuration to authenticate to this EKS cluster. |
+| db\_instance\_backend\_endpoint | RDS Outputs |
+| db\_instance\_backend\_name | n/a |
+| db\_instance\_backend\_port | n/a |
+| db\_instance\_backend\_resource\_id | n/a |
+| db\_instance\_backend\_sg\_id | n/a |
+| db\_instance\_backend\_username | n/a |
+| db\_instance\_id | n/a |
+| db\_subnet\_group\_id | DB Subnet Group ID |
+| name | The VPC name |
+| nat\_public\_ips | List of public Elastic IPs created for AWS NAT Gateway |
+| private\_subnets | List of IDs of private subnets |
+| public\_subnets | List of IDs of public subnets |
+| rds\_kms\_key\_arn | The RDS KMS Key arn |
+| rds\_kms\_key\_id | The RDS KMS Key ID |
+| repository\_url | The ECR repo URL |
+| vpc\_cidr\_block | The CIDR block of the VPC |
+| vpc\_id | The ID of the VPC |
+
+## Run the infrastructure
 
 * Login to AWS via SSO or export the profile you are using
 * Update any variables on `main.tf`. If you want to run this on a local state you will need to either delete or comment out the `backend.tf` as this assumes that an S3 bucket is created.
@@ -89,7 +125,7 @@ _Optional:_ An S3 bucket to store the tfstate file. If you dont want to create o
 * Run `terraform plan`; this will plan and show you the resources that will be created 
 * Run `terraform apply`; this will create the resources. _Please note that these resources are billable_
 
-#### Deploy the application
+## Deploy the application
 
 * Navigate to the `Application` folder
 * _Optional_: Update the the `db.php` with the correct value for the database test (should you wish to use this)
