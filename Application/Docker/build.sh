@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 {
+    echo "Please enter the ECR arn you wish to push to";
+    read ecr;
     docker build -t simplewebapp . ;
-    docker tag simplewebapp:latest 723949785394.dkr.ecr.eu-west-2.amazonaws.com/simplewebapp:latest
-    docker push 723949785394.dkr.ecr.eu-west-2.amazonaws.com/simplewebapp:latest
-    echo "Success: PHP image was built." ;
+    docker tag simplewebapp:latest $ecr:latest
+    docker push $ecr:latest
+    echo "Success: PHP image was built and pushed." ;
 } || {
     echo "Error: PHP image was not built."
 }
