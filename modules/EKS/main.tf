@@ -19,7 +19,7 @@ data "aws_eks_cluster_auth" "cluster" {
 
 resource "aws_security_group" "worker_group_mgmt" {
   name_prefix = "worker_group_mgmt"
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port = 22
@@ -34,7 +34,7 @@ resource "aws_security_group" "worker_group_mgmt" {
 
 resource "aws_security_group" "all_worker_mgmt" {
   name_prefix = "all_worker_management"
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port = 22
@@ -52,7 +52,7 @@ module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = var.cluster_name
   cluster_version = "1.17"
-  subnets         = module.vpc.private_subnets
+  subnets         = var.subnets
 
   tags = merge(
     {
@@ -61,7 +61,7 @@ module "eks" {
     var.tags
   )
 
-  vpc_id = module.vpc.vpc_id
+  vpc_id = var.vpc_id
 
   worker_groups = [
     {

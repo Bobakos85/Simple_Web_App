@@ -81,8 +81,17 @@ variable "cluster_name"{
   type = string
 }
 
-variable "vpc_name" {
-  description = "Default VPC Name"
-  type = string
+variable "subnets" {
+  description = "The subnets EKS will deploy its nodes on"
+  type        = list(string)
+}
 
+variable "vpc_id" {
+  description = "The VPC ID for the the vpc we will be deploying to"
+  type = string
+}
+
+variable "vpc_name" {
+  description = "The VPC Name for the the vpc we will be deploying to"
+  type = string
 }

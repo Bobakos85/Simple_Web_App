@@ -42,6 +42,8 @@ module "EKS" {
   map_roles             = var.map_roles
   map_users             = var.map_users
   map_accounts          = var.map_accounts
+  subnets               = module.vpc.private_subnets
+  vpc_id                = module.vpc.vpc_id
   vpc_name              = module.vpc.name
 }
 
