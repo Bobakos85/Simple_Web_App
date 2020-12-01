@@ -112,8 +112,8 @@ variable "db_subnet_group_name" {
 variable "kms_key_id" {
   description = "the KMS key id we will be using for the RDS instance"
   type        = string
- }
- 
+}
+
 variable "identifier" {
   description = "What will the RDS instance be called"
   type        = string

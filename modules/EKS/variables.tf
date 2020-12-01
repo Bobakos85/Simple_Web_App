@@ -76,9 +76,9 @@ variable "cidr_block_target_vpc" {
   type        = string
 }
 
-variable "cluster_name"{
+variable "cluster_name" {
   description = "EKS cluster name"
-  type = string
+  type        = string
 }
 
 variable "subnets" {
@@ -88,10 +88,10 @@ variable "subnets" {
 
 variable "vpc_id" {
   description = "The VPC ID for the the vpc we will be deploying to"
-  type = string
+  type        = string
 }
 
 variable "vpc_name" {
   description = "The VPC Name for the the vpc we will be deploying to"
-  type = string
+  type        = string
 }
