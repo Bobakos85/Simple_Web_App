@@ -59,12 +59,6 @@ variable "instance_class" {
   default     = "db.t3.micro"
 }
 
-variable "kms_key_id" {
-  description = "the KMS key id we will be using for the RDS instance"
-  type        = string
-  default     = "arn:aws:kms:eu-west-2:723949785394:key/89083b9b-e191-4079-ba76-80f467b89af4"
-}
-
 variable "max_allocated_storage" {
   description = "Maximum size autoscaling storage we will be able to grow to"
   type        = number
@@ -110,13 +104,18 @@ variable "db_name" {
   type        = string
 }
 
-variable "identifier" {
-  description = "What will the RDS instance be called"
+variable "db_subnet_group_name" {
+  description = "The db subnet group name"
   type        = string
 }
 
-variable "route_table_id" {
-  description = "The route table we will be associating the subnets with"
+variable "kms_key_id" {
+  description = "the KMS key id we will be using for the RDS instance"
+  type        = string
+ }
+ 
+variable "identifier" {
+  description = "What will the RDS instance be called"
   type        = string
 }
 

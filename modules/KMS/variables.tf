@@ -1,7 +1,6 @@
 variable "application_name" {
   description = "The application name"
   type        = string
-  default     = "SimpleWebApp"
 }
 
 variable "aws_account_id" {
@@ -12,5 +11,4 @@ variable "aws_account_id" {
 variable "environment" {
   description = "The environment we will be deploying to, i.e sandbox,test,uat,prod"
   type        = string
-  default     = "sandbox"
 }

@@ -1,12 +1,37 @@
-variable "cidr_block_target_vpc" {
-  description = "The cidr block that the VPC will use"
+variable "application_name" {
+  description = "The application name"
   type        = string
+  default     = "SimpleWebApp"
+}
+
+variable "aws_account_id" {
+  description = "The AWS account id"
+  type        = number
+  default     = "723949785394"
+}
+
+variable "cidr_block_target_vpc" {
+  description = "CIDR block of the VPC"
+  type        = string
+  default     = "10.0.0.0/16"
+}
+
+variable "db_name" {
+  description = "The name of the database"
+  type        = string
+  default     = "swa"
 }
 
 variable "environment" {
   description = "The environment we will be deploying to, i.e sandbox,test,uat,prod"
   type        = string
   default     = "sandbox"
+}
+
+variable "identifier" {
+  description = "What will the RDS instance be called"
+  type        = string
+  default     = "swa"
 }
 
 variable "map_accounts" {
@@ -46,8 +71,13 @@ variable "map_users" {
 
 variable "region" {
   description = "Where we will be deploying to"
-  default = "eu-west-2"
+  default     = "eu-west-2"
 }
+
+# variable "route_table_id" {
+#   description = "The route table we will be associating the subnets with"
+#   type        = string
+# }
 
 variable "tags" {
   description = "Default Tags to be used on all created resources"
@@ -71,8 +101,17 @@ variable "tags" {
   }
 }
 
-variable "vpc_name" {
-  description = "Default VPC Name"
-  type = string
+variable "target_vpc_id" {
+  description = "The target VPC ID where the instances will be deployed to"
+  type        = string
+  default     = ""
+}
 
+variable "vpc_tags" {
+  type = object(
+    { Name = string }
+  )
+  default = {
+    Name = ""
+  }
 }
