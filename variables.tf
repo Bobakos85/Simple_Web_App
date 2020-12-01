@@ -16,10 +16,10 @@ variable "cidr_block_target_vpc" {
   default     = "10.0.0.0/16"
 }
 
-variable "cluster_name"{
+variable "cluster_name" {
   description = "EKS cluster name"
-  type = string
-  default = "simple-web-app-eks"
+  type        = string
+  default     = "simple-web-app-eks"
 }
 
 variable "db_name" {
