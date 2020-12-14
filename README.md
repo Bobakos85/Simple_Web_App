@@ -53,8 +53,8 @@ The solution is divided into 2 parts:
 ## Prerequisites
 
 The solution assumes that the following have been installed on your system:
-* kubectl
-* terraform > 13
+* kubectl > 1.11
+* terraform > 0.13
 * docker
 * awscli 2.x
 
