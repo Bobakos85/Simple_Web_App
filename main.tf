@@ -51,7 +51,7 @@ module "KMS" {
   source = "./modules/KMS"
 
   application_name = var.application_name
-  aws_account_id   = "1234567890123456789"
+  aws_account_id   = var.aws_account_id
   environment      = var.environment
 }
 

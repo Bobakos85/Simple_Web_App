@@ -7,7 +7,6 @@ variable "application_name" {
 variable "aws_account_id" {
   description = "The AWS account id"
   type        = number
-  default     = "723949785394"
 }
 
 variable "cidr_block_target_vpc" {
